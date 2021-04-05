@@ -14,6 +14,9 @@
 
 #define N 128
 char puzzle[128];
+
+char *sort_solve[N];
+
 int total_solved = 0;
 int total = 0;
 int get_pos = 0;     //消费者指针位置
@@ -34,7 +37,7 @@ char *get() //消费者从缓冲区取问题
 {
     temp = buffer[get_pos];
     get_pos = (get_pos + 1) % N; //指针后移一位
-    printf("get_pos:%d\n", get_pos);
+                                 // printf("get_pos:%d\n", get_pos);
     num_data--;
     return temp;
 }
@@ -114,30 +117,35 @@ void *execute(void *arg)
         }
         total++;
         char *data = get();
-        printf("%d\ngetdata:", num_data);
-        for (int i = 0; i < 81; ++i)
+        for (int cell = 0; cell < 81; ++cell)
         {
-            printf("%c", data[i]);
+            board[cell] = data[cell] - '0';
         }
-        printf("\n");
-        int order = 100 - num_data; //打印顺序
+        // printf("%d\ngetdata:", num_data);
+        // for (int i = 0; i < 81; ++i)
+        // {
+        //     printf("%c", data[i]);
+        // }
+        // printf("\n");
+        pthread_cond_signal(&empty); //唤醒消费者
+        //缓冲区不是满的
+
+        pthread_mutex_unlock(&lock1);
         Dance d(board);
 
-        //if(num_data == 0 && !ifNull)
-        //{
-            pthread_cond_signal(&empty);
-        //} //缓冲区不是满的
-        
-        pthread_mutex_unlock(&lock1);
         if (d.solve())
         { //求解
-            ++total_solved;
+            
             if (!solved(chess)) //检查解的正确性
                 assert(0);
+            pthread_mutex_lock(&lock2);
+            ++total_solved;
+            printf("%s", data);
+            pthread_mutex_unlock(&lock2);
         }
         else
         {
-            printf("No: %s", puzzle);
+            printf("No: %s", data);
         }
     }
 }
@@ -166,15 +174,15 @@ int main(int argc, char *argv[])
         if (fgets(buffer[put_pos], 84, fp) != NULL) //从文件读数据
         {
 
-            printf("buffer:");
-            for (int i = 0; i < 81; ++i)
-            {
-                printf("%c", buffer[put_pos][i]);
-            }
-            printf("\n");
+            // printf("buffer:");
+            // for (int i = 0; i < 81; ++i)
+            // {
+            //     printf("%c", buffer[put_pos][i]);
+            // }
+            // printf("\n");
             //fgetc(fp);
             put_pos = (put_pos + 1) % N;
-            printf("put_pos:%d\n", put_pos);
+            // printf("put_pos:%d\n", put_pos);
             num_data++;
         }
         else //文件尾
@@ -194,6 +202,6 @@ int main(int argc, char *argv[])
     free(thread_handles);
     int64_t end = now();
     double sec = (end - start) / 1000000.0;
-    printf("%f sec %f ms each %d\n", sec, 1000 * sec / total, total_solved);
+    printf("\n%f sec %f ms each %d\n", sec, 1000 * sec / total, total_solved);
     return 0;
 }
