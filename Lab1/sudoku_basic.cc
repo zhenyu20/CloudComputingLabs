@@ -21,7 +21,6 @@ static void find_spaces()
 
 void input(const char in[N])
 {
-  
   for (int cell = 0; cell < N; ++cell) {
     board[cell] = in[cell] - '0';
     assert(0 <= board[cell] && board[cell] <= NUM);

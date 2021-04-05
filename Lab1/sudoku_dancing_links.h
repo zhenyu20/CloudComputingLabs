@@ -5,7 +5,7 @@
 
 #include "sudoku.h"
 using namespace std;
-extern int board[N];
+
 struct Node;
 typedef Node Column;
 struct Node
