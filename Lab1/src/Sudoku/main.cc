@@ -4,355 +4,190 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/time.h>
-#include<sys/file.h>
+#include <sys/file.h>
 #include <pthread.h>
 #include <assert.h>
-#include <memory.h>
-#include <map>
-#include <vector>
+#include <algorithm>
 
+#include "sudoku_dancing_links.h"
 #include "sudoku.h"
-using namespace std;
 
-
-struct Node;
-typedef Node Column;
-struct Node
-{
-    Node* left;
-    Node* right;
-    Node* up;
-    Node* down;
-    Column* col;
-    int name;
-    int size;
-};
-
-const int kMaxNodes = 1 + 81*4 + 9*9*9*4;
-const int kMaxColumns = 400;
-const int kRow = 100, kCol = 200, kBox = 300;
-
-
-struct Dance
-{
-    Column* root_;
-    int*    inout_;
-    Column* columns_[400];
-    vector<Node*> stack_;
-    Node    nodes_[kMaxNodes];
-    int     cur_node_;
-
-    Column* new_column(int n = 0)
-    {
-        assert(cur_node_ < kMaxNodes);
-        Column* c = &nodes_[cur_node_++];
-        memset(c, 0, sizeof(Column));
-        c->left = c;
-        c->right = c;
-        c->up = c;
-        c->down = c;
-        c->col = c;
-        c->name = n;
-        return c;
-    }
-
-    void append_column(int n)
-    {
-        assert(columns_[n] == NULL);
-
-        Column* c = new_column(n);
-        put_left(root_, c);
-        columns_[n] = c;
-    }
-
-    Node* new_row(int col)
-    {
-        assert(columns_[col] != NULL);
-        assert(cur_node_ < kMaxNodes);
-
-        Node* r = &nodes_[cur_node_++];
-
-        //Node* r = new Node;
-        memset(r, 0, sizeof(Node));
-        r->left = r;
-        r->right = r;
-        r->up = r;
-        r->down = r;
-        r->name = col;
-        r->col = columns_[col];
-        put_up(r->col, r);
-        return r;
-    }
-
-    int get_row_col(int row, int val)
-    {
-        return kRow+row*10+val;
-    }
-
-    int get_col_col(int col, int val)
-    {
-        return kCol+col*10+val;
-    }
-
-    int get_box_col(int box, int val)
-    {
-        return kBox+box*10+val;
-    }
-
-    Dance(int inout[81]) : inout_(inout), cur_node_(0)
-    {
-        stack_.reserve(100);
-
-        root_ = new_column();
-        root_->left = root_->right = root_;
-        memset(columns_, 0, sizeof(columns_));
-
-        bool rows[N][10] = {false};
-        bool cols[N][10] = {false};
-        bool boxes[N][10] = {false};
-
-        for (int i = 0; i < N; ++i) {
-            int row = i / 9;
-            int col = i % 9;
-            int box = row/3*3 + col/3;
-            int val = inout[i];
-            rows[row][val] = true;
-            cols[col][val] = true;
-            boxes[box][val] = true;
-        }
-
-        for (int i = 0; i < N; ++i) {
-            if (inout[i] == 0) {
-                append_column(i);
-            }
-        }
-
-        for (int i = 0; i < 9; ++i) {
-            for (int v = 1; v < 10; ++v) {
-                if (!rows[i][v])
-                    append_column(get_row_col(i, v));
-                if (!cols[i][v])
-                    append_column(get_col_col(i, v));
-                if (!boxes[i][v])
-                    append_column(get_box_col(i, v));
-            }
-        }
-
-        for (int i = 0; i < N; ++i) {
-            if (inout[i] == 0) {
-                int row = i / 9;
-                int col = i % 9;
-                int box = row/3*3 + col/3;
-                //int val = inout[i];
-                for (int v = 1; v < 10; ++v) {
-                    if (!(rows[row][v] || cols[col][v] || boxes[box][v])) {
-                        Node* n0 = new_row(i);
-                        Node* nr = new_row(get_row_col(row, v));
-                        Node* nc = new_row(get_col_col(col, v));
-                        Node* nb = new_row(get_box_col(box, v));
-                        put_left(n0, nr);
-                        put_left(n0, nc);
-                        put_left(n0, nb);
-                    }
-                }
-            }
-        }
-    }
-
-    Column* get_min_column()
-    {
-        Column* c = root_->right;
-        int min_size = c->size;
-        if (min_size > 1) {
-            for (Column* cc = c->right; cc != root_; cc = cc->right) {
-                if (min_size > cc->size) {
-                    c = cc;
-                    min_size = cc->size;
-                    if (min_size <= 1)
-                        break;
-                }
-            }
-        }
-        return c;
-    }
-
-    void cover(Column* c)
-    {
-        c->right->left = c->left;
-        c->left->right = c->right;
-        for (Node* row = c->down; row != c; row = row->down) {
-            for (Node* j = row->right; j != row; j = j->right) {
-                j->down->up = j->up;
-                j->up->down = j->down;
-                j->col->size--;
-            }
-        }
-    }
-
-    void uncover(Column* c)
-    {
-        for (Node* row = c->up; row != c; row = row->up) {
-            for (Node* j = row->left; j != row; j = j->left) {
-                j->col->size++;
-                j->down->up = j;
-                j->up->down = j;
-            }
-        }
-        c->right->left = c;
-        c->left->right = c;
-    }
-
-    bool solve()
-    {
-        if (root_->left == root_) {
-            for (size_t i = 0; i < stack_.size(); ++i) {
-                Node* n = stack_[i];
-                int cell = -1;
-                int val = -1;
-                while (cell == -1 || val == -1) {
-                    if (n->name < 100)
-                        cell = n->name;
-                    else
-                        val = n->name % 10;
-                    n = n->right;
-                }
-
-                //assert(cell != -1 && val != -1);
-                inout_[cell] = val;
-            }
-            return true;
-        }
-
-        Column* const col = get_min_column();
-        cover(col);
-        for (Node* row = col->down; row != col; row = row->down) {
-            stack_.push_back(row);
-            for (Node* j = row->right; j != row; j = j->right) {
-                cover(j->col);
-            }
-            if (solve()) {
-                return true;
-            }
-            stack_.pop_back();
-            for (Node* j = row->left; j != row; j = j->left) {
-                uncover(j->col);
-            }
-        }
-        uncover(col);
-        return false;
-    }
-
-    void put_left(Column* old, Column* nnew)
-    {
-        nnew->left = old->left;
-        nnew->right = old;
-        old->left->right = nnew;
-        old->left = nnew;
-    }
-
-    void put_up(Column* old, Node* nnew)
-    {
-        nnew->up = old->up;
-        nnew->down = old;
-        old->up->down = nnew;
-        old->up = nnew;
-        old->size++;
-        nnew->col = old;
-    }
-};
-
-
-
-
-
-
-int64_t now()
-{
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
-  return tv.tv_sec * 1000000 + tv.tv_usec;
-}
+#define N 128
 char puzzle[128];
 int total_solved = 0;
 int total = 0;
-bool (*solve)(int) = solve_sudoku_basic;
-int  thread_count;
-FILE* fp;
-pthread_mutex_t lock1=PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t lock2=PTHREAD_MUTEX_INITIALIZER;
-void* execute(void* arg)
+int get_pos = 0;     //消费者指针位置
+int put_pos = 0;     //生产者指针位置
+int thread_count;    //线程数量
+char *buffer[N];     //问题的缓冲区
+int num_data = 0;    //缓冲区剩的问题的数量
+bool ifNull = false; //文件是否读完
+
+FILE *fp;
+pthread_mutex_t lock1 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t lock2 = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t empty = PTHREAD_COND_INITIALIZER;
+pthread_cond_t full = PTHREAD_COND_INITIALIZER;
+
+char *temp; //取数据
+char *get() //消费者从缓冲区取问题
 {
-      
-      while(1)
-      {
-        
-        pthread_mutex_lock(&lock2);
-            if(fgets(puzzle, sizeof puzzle, fp) == NULL)
-              {
-                pthread_mutex_unlock(&lock2);
-                break;
-              }
-        ++total;
-        input(puzzle);
-        init_cache();
+    temp = buffer[get_pos];
+    get_pos = (get_pos + 1) % N; //指针后移一位
+    printf("get_pos:%d\n", get_pos);
+    num_data--;
+    return temp;
+}
+
+int64_t now()
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000000 + tv.tv_usec;
+}
+bool solved(int (*chess)[9])
+{
+    for (int row = 0; row < ROW; ++row)
+    {
+        // check row
+        int occurs[10] = {0};
+        for (int col = 0; col < COL; ++col)
+        {
+            int val = chess[row][col];
+            assert(1 <= val && val <= NUM);
+            ++occurs[val];
+        }
+
+        if (std::count(occurs, occurs + 10, 1) != NUM)
+            return false;
+    }
+
+    for (int col = 0; col < COL; ++col)
+    {
+        int occurs[10] = {0};
+        for (int row = 0; row < ROW; ++row)
+        {
+            int val = chess[row][col];
+            // assert(1 <= val && val <= NUM);
+            ++occurs[val];
+        }
+
+        if (std::count(occurs, occurs + 10, 1) != NUM)
+            return false;
+    }
+
+    for (int row = 0; row < ROW; row += 3)
+    {
+        for (int col = 0; col < COL; col += 3)
+        {
+            int occurs[10] = {0};
+            ++occurs[chess[row][col]];
+            ++occurs[chess[row][col + 1]];
+            ++occurs[chess[row][col + 2]];
+            ++occurs[chess[row + 1][col]];
+            ++occurs[chess[row + 1][col + 1]];
+            ++occurs[chess[row + 1][col + 2]];
+            ++occurs[chess[row + 2][col]];
+            ++occurs[chess[row + 2][col + 1]];
+            ++occurs[chess[row + 2][col + 2]];
+
+            if (std::count(occurs, occurs + 10, 1) != NUM)
+                return false;
+        }
+    }
+    return true;
+}
+void *execute(void *arg)
+{
+    int board[81];
+    int(*chess)[9] = (int(*)[9])board; //用于检查解是否正确
+    while (1)
+    {
+        pthread_mutex_lock(&lock1);
+        if (num_data == 0 && ifNull) //所有任务已完成
+        {
+            pthread_mutex_unlock(&lock1);
+            pthread_exit(NULL); //线程主动结束并退出
+        }
+        while (num_data == 0 && !ifNull) //缓冲区空了
+            pthread_cond_wait(&full, &lock1);
+        total++;
+        char *data = get();
+        printf("%d\ngetdata:", num_data);
+        for (int i = 0; i < 81; ++i)
+        {
+            printf("%c", data[i]);
+        }
+        printf("\n");
+        int order = 100 - num_data; //打印顺序
         Dance d(board);
-        pthread_mutex_unlock(&lock2);
-        if (d.solve()) {
-
-          if (!solved())
-            assert(0);
+        pthread_cond_signal(&empty); //缓冲区不是满的
+        pthread_mutex_unlock(&lock1);
+        if (d.solve())
+        { //求解
+            ++total_solved;
+            if (!solved(chess)) //检查解的正确性
+                assert(0);
         }
-        else {
-          printf("No: %s", puzzle);
+        else
+        {
+            printf("No: %s", puzzle);
         }
-        
-      }
-      
-      
+    }
 }
 
-
-
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-  init_neighbors();
+    init_neighbors();
+    fp = fopen(argv[1], "r");
+    thread_count = strtol(argv[3], NULL, 10);
+    for (int i = 0; i < N; i++) //初始化缓冲区
+        buffer[i] = (char *)malloc(82 * sizeof(char));
+    pthread_t *thread_handles;
+    thread_handles = (pthread_t *)malloc(thread_count * sizeof(pthread_t));
+    for (int i = 0; i < thread_count; i++) //创建线程
+    {
+        pthread_create(&thread_handles[i], NULL, execute, NULL);
+    }
+    int64_t start = now();
+    while (1)
+    {
+        pthread_mutex_lock(&lock1); //生产者的锁
+        while (num_data == 128)     //缓冲区满了
+        {
+            pthread_cond_wait(&empty, &lock1);
+        }
+        if (fgets(buffer[put_pos], 83, fp) != NULL) //从文件读数据
+        {
 
-  fp = fopen(argv[1], "r");
-  if (argv[2] != NULL)
-    if (argv[2][0] == 'a')
-      solve = solve_sudoku_min_arity;
-    else if (argv[2][0] == 'c')
-      solve = solve_sudoku_min_arity_cache;
-    else if (argv[2][0] == 'd')
-      solve = solve_sudoku_dancing_links;
-
-
-  
-
-
-
-  
-
-
-  int64_t start = now();
-  
-  thread_count=strtol(argv[3],NULL,10);
-  pthread_t * thread_handles;
-  thread_handles=(pthread_t *)malloc(thread_count*sizeof(pthread_t));
-  for(int i=0;i<thread_count;i++)
-  {
-        pthread_create(&thread_handles[i],NULL,execute,NULL);
-  }
-  for(int i=0;i<thread_count;i++)
-  {
-        pthread_join(thread_handles[i],NULL);
-  }
-  free(thread_handles);
-  
-  int64_t end = now();
-  double sec = (end-start)/1000000.0;
-  printf("%f sec %f ms each %d\n", sec, 1000*sec/total, total_solved);
-
-  return 0;
+            printf("buffer:");
+            for (int i = 0; i < 81; ++i)
+            {
+                printf("%c", buffer[put_pos][i]);
+            }
+            printf("\n");
+            fgetc(fp);
+            put_pos = (put_pos + 1) % N;
+            printf("put_pos:%d\n", put_pos);
+            num_data++;
+        }
+        else //文件尾
+        {
+            ifNull = true;
+            pthread_mutex_unlock(&lock1);
+            pthread_cond_broadcast(&full); //广播唤醒所有消费者
+            break;
+        }
+        pthread_cond_signal(&full);
+        pthread_mutex_unlock(&lock1);
+    }
+    for (int i = 0; i < thread_count; i++)
+    {
+        pthread_join(thread_handles[i], NULL);
+    }
+    free(thread_handles);
+    int64_t end = now();
+    double sec = (end - start) / 1000000.0;
+    printf("%f sec %f ms each %d\n", sec, 1000 * sec / total, total_solved);
+    return 0;
 }
-
