@@ -24,17 +24,16 @@ int num_data = 0;    //缓冲区剩的问题的数量
 bool ifNull = false; //文件是否读完
 
 FILE *fp;
-pthread_mutex_t lock1 = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t lock2 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t empty = PTHREAD_COND_INITIALIZER;
 pthread_cond_t full = PTHREAD_COND_INITIALIZER;
 
 char *temp; //取数据
 char *get() //消费者从缓冲区取问题
 {
+    printf("get_pos:%d\n", get_pos);
     temp = buffer[get_pos];
     get_pos = (get_pos + 1) % N; //指针后移一位
-    printf("get_pos:%d\n", get_pos);
     num_data--;
     return temp;
 }
@@ -68,7 +67,7 @@ bool solved(int (*chess)[9])
         for (int row = 0; row < ROW; ++row)
         {
             int val = chess[row][col];
-            // assert(1 <= val && val <= NUM);
+            assert(1 <= val && val <= NUM);
             ++occurs[val];
         }
 
@@ -103,26 +102,26 @@ void *execute(void *arg)
     int(*chess)[9] = (int(*)[9])board; //用于检查解是否正确
     while (1)
     {
-        pthread_mutex_lock(&lock1);
-        if (num_data == 0 && ifNull) //所有任务已完成
+        pthread_mutex_lock(&mutex);
+
+        while (num_data == 0 && !ifNull) //缓冲区空了
+            pthread_cond_wait(&full, &mutex);
+        while (num_data == 0 && ifNull) //所有任务已完成
         {
-            pthread_mutex_unlock(&lock1);
+            pthread_mutex_unlock(&mutex);
             pthread_exit(NULL); //线程主动结束并退出
         }
-        while (num_data == 0 && !ifNull) //缓冲区空了
-            pthread_cond_wait(&full, &lock1);
         total++;
         char *data = get();
-        printf("%d\ngetdata:", num_data);
-        for (int i = 0; i < 81; ++i)
-        {
-            printf("%c", data[i]);
-        }
-        printf("\n");
+
+        printf("num_data: %d\n", num_data);
+        printf("getdata: %s\n", data);
+
         int order = 100 - num_data; //打印顺序
         Dance d(board);
         pthread_cond_signal(&empty); //缓冲区不是满的
-        pthread_mutex_unlock(&lock1);
+        pthread_mutex_unlock(&mutex);
+        
         if (d.solve())
         { //求解
             ++total_solved;
@@ -140,7 +139,7 @@ int main(int argc, char *argv[])
 {
     init_neighbors();
     fp = fopen(argv[1], "r");
-    thread_count = strtol(argv[3], NULL, 10);
+    thread_count = strtol(argv[2], NULL, 10);
     for (int i = 0; i < N; i++) //初始化缓冲区
         buffer[i] = (char *)malloc(82 * sizeof(char));
     pthread_t *thread_handles;
@@ -152,39 +151,35 @@ int main(int argc, char *argv[])
     int64_t start = now();
     while (1)
     {
-        pthread_mutex_lock(&lock1); //生产者的锁
+        pthread_mutex_lock(&mutex); //生产者的锁
         while (num_data == 128)     //缓冲区满了
         {
-            pthread_cond_wait(&empty, &lock1);
+            pthread_cond_wait(&empty, &mutex);
         }
         if (fgets(buffer[put_pos], 84, fp) != NULL) //从文件读数据
         {
+            printf("put_pos:%d\n", put_pos);
+            printf("buffer:%s\n",buffer[put_pos]);
 
-            printf("buffer:");
-            for (int i = 0; i < 81; ++i)
-            {
-                printf("%c", buffer[put_pos][i]);
-            }
-            printf("\n");
             //fgetc(fp);
             put_pos = (put_pos + 1) % N;
-            printf("put_pos:%d\n", put_pos);
             num_data++;
         }
-        else //文件尾
+        else  //文件尾
         {
             ifNull = true;
-            pthread_mutex_unlock(&lock1);
-            pthread_cond_broadcast(&full); //广播唤醒所有消费者
+            pthread_cond_signal(&full); //唤醒消费者
+            pthread_mutex_unlock(&mutex);
             break;
         }
         pthread_cond_signal(&full);
-        pthread_mutex_unlock(&lock1);
+        pthread_mutex_unlock(&mutex);
     }
     for (int i = 0; i < thread_count; i++)
     {
         pthread_join(thread_handles[i], NULL);
     }
+
     free(thread_handles);
     int64_t end = now();
     double sec = (end - start) / 1000000.0;
