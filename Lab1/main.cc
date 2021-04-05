@@ -104,13 +104,16 @@ void *execute(void *arg)
     while (1)
     {
         pthread_mutex_lock(&lock1);
+
+        while (num_data == 0 && !ifNull) //缓冲区空了
+            pthread_cond_wait(&full, &lock1);
+
         if (num_data == 0 && ifNull) //所有任务已完成
         {
             pthread_mutex_unlock(&lock1);
             pthread_exit(NULL); //线程主动结束并退出
         }
-        while (num_data == 0 && !ifNull) //缓冲区空了
-            pthread_cond_wait(&full, &lock1);
+        
         total++;
         char *data = get();
         printf("%d\ngetdata:", num_data);
@@ -141,14 +144,17 @@ int main(int argc, char *argv[])
     init_neighbors();
     fp = fopen(argv[1], "r");
     thread_count = strtol(argv[3], NULL, 10);
+
     for (int i = 0; i < N; i++) //初始化缓冲区
         buffer[i] = (char *)malloc(82 * sizeof(char));
+
     pthread_t *thread_handles;
     thread_handles = (pthread_t *)malloc(thread_count * sizeof(pthread_t));
     for (int i = 0; i < thread_count; i++) //创建线程
     {
         pthread_create(&thread_handles[i], NULL, execute, NULL);
     }
+
     int64_t start = now();
     while (1)
     {
