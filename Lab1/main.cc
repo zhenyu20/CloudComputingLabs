@@ -15,15 +15,18 @@
 #define N 128
 char puzzle[128];
 
-char *sort_solve[N];
-
 int total_solved = 0;
 int total = 0;
-int get_pos = 0;     //消费者指针位置
-int put_pos = 0;     //生产者指针位置
-int thread_count;    //线程数量
-char *buffer[N];     //问题的缓冲区
-int num_data = 0;    //缓冲区剩的问题的数量
+int get_pos = 0;  //消费者指针位置
+int put_pos = 0;  //生产者指针位置
+int thread_count; //线程数量
+char *buffer[N];  //问题的缓冲区
+int num_data = 0; //缓冲区剩的问题的数量
+pthread_t thread_sort;
+int sort_solve[N][81];
+int buffer_num = 0;
+int produce_turns = 0;
+
 bool ifNull = false; //文件是否读完
 
 FILE *fp;
@@ -41,7 +44,19 @@ char *get() //消费者从缓冲区取问题
     num_data--;
     return temp;
 }
+void *sort1(void *arg)
+{
 
+    for (int i = 0; i < buffer_num; i++)
+    {
+        for (int j = 0; j < 81; j++)
+        {
+            printf("%d", sort_solve[i][j]);
+        }
+        printf("\n");
+    }
+    pthread_exit(NULL);
+}
 int64_t now()
 {
     struct timeval tv;
@@ -104,44 +119,49 @@ void *execute(void *arg)
 {
     int board[81];
     int(*chess)[9] = (int(*)[9])board; //用于检查解是否正确
+    int get_pos_t = -1;
     while (1)
     {
+
         pthread_mutex_lock(&lock1);
 
         while (num_data == 0 && !ifNull) //缓冲区空了
+        {
+            pthread_cond_signal(&empty);
             pthread_cond_wait(&full, &lock1);
+        }
         if (num_data == 0 && ifNull) //所有任务已完成
         {
             pthread_mutex_unlock(&lock1);
             pthread_exit(NULL); //线程主动结束并退出
         }
+        //printf("吃一个 \n");
         total++;
+        get_pos_t = get_pos;
         char *data = get();
+        
+       pthread_mutex_unlock(&lock1);
+
         for (int cell = 0; cell < 81; ++cell)
         {
             board[cell] = data[cell] - '0';
         }
-        // printf("%d\ngetdata:", num_data);
-        // for (int i = 0; i < 81; ++i)
-        // {
-        //     printf("%c", data[i]);
-        // }
-        // printf("\n");
-        pthread_cond_signal(&empty); //唤醒消费者
-        //缓冲区不是满的
 
-        pthread_mutex_unlock(&lock1);
+ 
         Dance d(board);
-
         if (d.solve())
         { //求解
-            
+
             if (!solved(chess)) //检查解的正确性
                 assert(0);
-            pthread_mutex_lock(&lock2);
-            ++total_solved;
-            printf("%s", data);
-            pthread_mutex_unlock(&lock2);
+
+             pthread_mutex_lock(&lock2);
+             ++total_solved;
+             pthread_mutex_unlock(&lock2);
+            for (int i = 0; i < 81; i++)
+            {
+                sort_solve[get_pos_t][i] = board[i];
+            }
         }
         else
         {
@@ -158,50 +178,66 @@ int main(int argc, char *argv[])
     for (int i = 0; i < N; i++) //初始化缓冲区
         buffer[i] = (char *)malloc(82 * sizeof(char));
     pthread_t *thread_handles;
+
     thread_handles = (pthread_t *)malloc(thread_count * sizeof(pthread_t));
+
     for (int i = 0; i < thread_count; i++) //创建线程
     {
         pthread_create(&thread_handles[i], NULL, execute, NULL);
     }
+
     int64_t start = now();
+
+    pthread_mutex_lock(&lock1); //生产者的锁
     while (1)
     {
-        pthread_mutex_lock(&lock1); //生产者的锁
-        while (num_data == 128)     //缓冲区满了
-        {
-            pthread_cond_wait(&empty, &lock1);
-        }
-        if (fgets(buffer[put_pos], 84, fp) != NULL) //从文件读数据
+
+        while (num_data == 128) //缓冲区满了
         {
 
-            // printf("buffer:");
-            // for (int i = 0; i < 81; ++i)
-            // {
-            //     printf("%c", buffer[put_pos][i]);
-            // }
-            // printf("\n");
-            //fgetc(fp);
+            buffer_num = N;
+            if (produce_turns != 0)//第一次生产不能输出
+            {
+                pthread_create(&thread_sort, NULL, sort1, NULL);
+                pthread_join(thread_sort, NULL);
+            }
+            pthread_cond_signal(&full);
+            pthread_cond_wait(&empty, &lock1);
+            produce_turns++;
+        }
+
+        if (fgets(buffer[put_pos], 84, fp) != NULL) //从文件读数据
+        {
             put_pos = (put_pos + 1) % N;
-            // printf("put_pos:%d\n", put_pos);
             num_data++;
         }
         else //文件尾
         {
+            if (produce_turns != 0)
+            {
+                //  printf("%d\n",produce_turns);
+                pthread_create(&thread_sort, NULL, sort1, NULL);
+                pthread_join(thread_sort, NULL);
+            }
+            
+            buffer_num = num_data;
+            //  printf("%d \n",buffer_num);
+         
             ifNull = true;
-            pthread_mutex_unlock(&lock1);
             pthread_cond_broadcast(&full); //广播唤醒所有消费者
+            pthread_mutex_unlock(&lock1);
             break;
         }
-        pthread_cond_signal(&full);
-        pthread_mutex_unlock(&lock1);
     }
     for (int i = 0; i < thread_count; i++)
     {
         pthread_join(thread_handles[i], NULL);
     }
+    pthread_create(&thread_sort, NULL, sort1, NULL);
+    pthread_join(thread_sort, NULL);
     free(thread_handles);
     int64_t end = now();
     double sec = (end - start) / 1000000.0;
-    printf("\n%f sec %f ms each %d\n", sec, 1000 * sec / total, total_solved);
+    printf("%f sec %f ms each %d\n", sec, 1000 * sec / total, total_solved);
     return 0;
 }
