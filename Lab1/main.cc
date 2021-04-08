@@ -13,7 +13,7 @@
 #include "sudoku.h"
 
 #define N 128
-#define thread_count 3 //线程数量
+#define thread_count 1 //线程数量
 
 int total_solved = 0;
 int total = 0;
