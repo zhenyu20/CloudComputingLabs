@@ -1,0 +1,18 @@
+#!/usr/bin/perl -Tw
+
+ use strict;
+ use CGI;
+
+ my($cgi) = new CGI;
+
+ print $cgi->header;
+ my($name) = "blue";
+ my($id) = "*";
+ $name = $cgi->param('Name') if defined $cgi->param('Name');
+ $id = $cgi->param('ID') if defined $cgi->param('ID');
+ #print $cgi->start_html(-title => uc($name),
+ #                       -BGCOLOR => $name);
+
+ print $cgi->body("\nName: $name \n ID: $id \n");
+# print $cgi->body("");
+ print $cgi->end_html;
