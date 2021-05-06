@@ -485,16 +485,45 @@ void unimplemented(int client)
 }
 
 /**********************************************************************/
-
-int main(void)
+int main(int argc, char *argv[])
 {
     int server_sock = -1;
-    u_short port = 4000;
     int client_sock = -1;
     struct sockaddr_in client_name;
     socklen_t  client_name_len = sizeof(client_name);
-    pthread_t newthread;
+    pthread_t newthread;      
+    u_short port;
+    char ip_name[16];
+    char proxy_name[255];
+    int num_thread;
+ 
+    for (int i=1;i<argc;i++) {
+        if (!strcmp(argv[i],"--port")&&i+1<argc) {
+            port=atoi(argv[++i]);
+            printf("port:%d\n",port);
+        }
+        else if (!strcmp(argv[i],"--number-thread")&&i+1<argc) {
+            num_thread=atoi(argv[++i]);
+            printf("num_thread:%d\n",num_thread);
+        }
+        else if (!strcmp(argv[i],"--ip")&&i+1<argc) {
+            strcpy(ip_name,argv[++i]);
+            printf("ip:%s\n",ip_name);
+        }
+        else if (!strcmp(argv[i],"--proxy")&&i+1<argc) {
+            strcpy(proxy_name,argv[++i]);
+            printf("proxy:%s\n",proxy_name);
+        }
+        else {
+            printf("cmd error!");
+        }
+    }
+     client_name.sin_family = AF_INET;
+     client_name.sin_port = htons(port);
+     client_name.sin_addr.s_addr = inet_addr(ip_name);
+//   client_name.sin_addr.s_addr=;
 
+ 
     server_sock = startup(&port);
     printf("Server is running on port %d\n", port);
 
