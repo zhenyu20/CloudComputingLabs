@@ -11,15 +11,14 @@
 
 #include "sudoku_dancing_links.h"
 #include "sudoku.h"
-
+ 
 #define N 128
-char puzzle[128];
+#define thread_count 1 //线程数量
 
 int total_solved = 0;
 int total = 0;
 int get_pos = 0;  //消费者指针位置
 int put_pos = 0;  //生产者指针位置
-int thread_count; //线程数量
 char *buffer[N];  //问题的缓冲区
 int num_data = 0; //缓冲区剩的问题的数量
 pthread_t thread_sort;
@@ -173,8 +172,12 @@ void *execute(void *arg)
 int main(int argc, char *argv[])
 {
     init_neighbors();
-    fp = fopen(argv[1], "r");
-    thread_count = strtol(argv[3], NULL, 10);
+    char filename[30];
+    int a = scanf("%s", filename);
+    fp = fopen(filename, "r");
+    //fp = fopen(argv[1], "r");
+    //thread_count = strtol(argv[2], NULL, 10);
+
     for (int i = 0; i < N; i++) //初始化缓冲区
         buffer[i] = (char *)malloc(82 * sizeof(char));
     pthread_t *thread_handles;
@@ -241,3 +244,4 @@ int main(int argc, char *argv[])
     printf("%f sec %f ms each %d\n", sec, 1000 * sec / total, total_solved);
     return 0;
 }
+
