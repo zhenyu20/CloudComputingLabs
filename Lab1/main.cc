@@ -11,7 +11,7 @@
 
 #include "sudoku_dancing_links.h"
 #include "sudoku.h"
-
+ 
 #define N 128
 #define thread_count 1 //线程数量
 
@@ -244,3 +244,4 @@ int main(int argc, char *argv[])
     printf("%f sec %f ms each %d\n", sec, 1000 * sec / total, total_solved);
     return 0;
 }
+
