@@ -257,8 +257,8 @@ void execute_cgi(int client, const char *path,
         cannot_execute(client);
         return;
     }
-    sprintf(buf, "HTTP/1.0 200 OK\r\n");
-    send(client, buf, strlen(buf), 0);
+    // sprintf(buf, "HTTP/1.0 200 OK\r\n");
+    // send(client, buf, strlen(buf), 0);
     if (pid == 0)  /* child: CGI script */
     {
         char meth_env[255];
@@ -522,8 +522,6 @@ int main(int argc, char *argv[])
      client_name.sin_port = htons(port);
      client_name.sin_addr.s_addr = inet_addr(ip_name);
 //   client_name.sin_addr.s_addr=;
-
- 
     server_sock = startup(&port);
     printf("Server is running on port %d\n", port);
 
