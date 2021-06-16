@@ -1,0 +1,3 @@
+/mnt/f/code practice/ClionProject/project1/CMakeFiles/rebuild_cache.dir
+/mnt/f/code practice/ClionProject/project1/CMakeFiles/kvstore2pcsystem.dir
+/mnt/f/code practice/ClionProject/project1/CMakeFiles/edit_cache.dir

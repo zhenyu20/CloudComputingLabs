@@ -1,0 +1,440 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+./include/conf.h
+headSet.h
+./include/headSet.h
+
+./include/encode_decode.h
+headSet.h
+./include/headSet.h
+
+./include/headSet.h
+unistd.h
+-
+sys/time.h
+-
+fcntl.h
+-
+sys/stat.h
+-
+signal.h
+-
+sys/types.h
+-
+linux/limits.h
+-
+syscall.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+netdb.h
+-
+netinet/tcp.h
+-
+sys/mman.h
+-
+pthread.h
+-
+errno.h
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+ctime
+-
+cstdarg
+-
+errno.h
+-
+malloc.h
+-
+algorithm
+-
+cstdlib
+-
+getopt.h
+-
+fstream
+-
+string
+-
+map
+-
+set
+-
+vector
+-
+iostream
+-
+atomic
+-
+list
+-
+queue
+-
+thread
+-
+assert.h
+-
+semaphore.h
+-
+
+./include/kv.h
+headSet.h
+./include/headSet.h
+encode_decode.h
+./include/encode_decode.h
+phmap.h
+./include/phmap.h
+
+./include/lock.h
+pthread.h
+-
+semaphore.h
+-
+
+./include/myLog.h
+headSet.h
+./include/headSet.h
+
+./include/network.h
+headSet.h
+./include/headSet.h
+ossSocket.hpp
+./include/ossSocket.hpp
+util.h
+./include/util.h
+
+./include/util.h
+headSet.h
+./include/headSet.h
+
+./third_party/ossSocket/ossSocket.hpp
+../../include/headSet.h
+./include/headSet.h
+
+./third_party/parallel_hashmap/phmap.h
+algorithm
+-
+cmath
+-
+cstring
+-
+iterator
+-
+limits
+-
+memory
+-
+tuple
+-
+type_traits
+-
+utility
+-
+array
+-
+cassert
+-
+atomic
+-
+phmap_fwd_decl.h
+./third_party/parallel_hashmap/phmap_fwd_decl.h
+phmap_utils.h
+./third_party/parallel_hashmap/phmap_utils.h
+phmap_base.h
+./third_party/parallel_hashmap/phmap_base.h
+string_view
+-
+
+./third_party/parallel_hashmap/phmap_base.h
+algorithm
+-
+cassert
+-
+cstddef
+-
+initializer_list
+-
+iterator
+-
+string
+-
+type_traits
+-
+utility
+-
+functional
+-
+tuple
+-
+utility
+-
+memory
+-
+mutex
+-
+phmap_config.h
+./third_party/parallel_hashmap/phmap_config.h
+shared_mutex
+-
+optional
+-
+sanitizer/asan_interface.h
+-
+cxxabi.h
+-
+
+./third_party/parallel_hashmap/phmap_bits.h
+stdlib.h
+-
+libkern/OSByteOrder.h
+-
+sys/endian.h
+-
+byteswap.h
+-
+string.h
+-
+cstdint
+-
+phmap_config.h
+./third_party/parallel_hashmap/phmap_config.h
+stdint.h
+-
+intrin.h
+-
+
+./third_party/parallel_hashmap/phmap_config.h
+limits.h
+-
+cstddef
+-
+Availability.h
+-
+TargetConditionals.h
+-
+android/ndk-version.h
+-
+emmintrin.h
+-
+tmmintrin.h
+-
+
+./third_party/parallel_hashmap/phmap_fwd_decl.h
+memory
+-
+utility
+-
+
+./third_party/parallel_hashmap/phmap_utils.h
+cstdint
+-
+functional
+-
+tuple
+-
+phmap_bits.h
+./third_party/parallel_hashmap/phmap_bits.h
+
+/mnt/f/code practice/ClionProject/project1/conf.cpp
+conf.h
+/mnt/f/code practice/ClionProject/project1/conf.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+
+/mnt/f/code practice/ClionProject/project1/coordinator.cpp
+coordinator.h
+/mnt/f/code practice/ClionProject/project1/coordinator.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+encode_decode.h
+/mnt/f/code practice/ClionProject/project1/encode_decode.h
+myLog.h
+/mnt/f/code practice/ClionProject/project1/myLog.h
+
+/mnt/f/code practice/ClionProject/project1/coordinator.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+myLog.h
+/mnt/f/code practice/ClionProject/project1/myLog.h
+lock.h
+/mnt/f/code practice/ClionProject/project1/lock.h
+network.h
+/mnt/f/code practice/ClionProject/project1/network.h
+encode_decode.h
+/mnt/f/code practice/ClionProject/project1/encode_decode.h
+
+/mnt/f/code practice/ClionProject/project1/encode_decode.cpp
+include/encode_decode.h
+/mnt/f/code practice/ClionProject/project1/include/encode_decode.h
+
+/mnt/f/code practice/ClionProject/project1/include/encode_decode.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/include/headSet.h
+
+/mnt/f/code practice/ClionProject/project1/include/headSet.h
+unistd.h
+-
+sys/time.h
+-
+fcntl.h
+-
+sys/stat.h
+-
+signal.h
+-
+sys/types.h
+-
+linux/limits.h
+-
+syscall.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+netdb.h
+-
+netinet/tcp.h
+-
+sys/mman.h
+-
+pthread.h
+-
+errno.h
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+ctime
+-
+cstdarg
+-
+errno.h
+-
+malloc.h
+-
+algorithm
+-
+cstdlib
+-
+getopt.h
+-
+fstream
+-
+string
+-
+map
+-
+set
+-
+vector
+-
+iostream
+-
+atomic
+-
+list
+-
+queue
+-
+thread
+-
+assert.h
+-
+semaphore.h
+-
+
+/mnt/f/code practice/ClionProject/project1/include/kv.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/include/headSet.h
+encode_decode.h
+/mnt/f/code practice/ClionProject/project1/include/encode_decode.h
+phmap.h
+/mnt/f/code practice/ClionProject/project1/include/phmap.h
+
+/mnt/f/code practice/ClionProject/project1/kv.cpp
+include/headSet.h
+/mnt/f/code practice/ClionProject/project1/include/headSet.h
+include/kv.h
+/mnt/f/code practice/ClionProject/project1/include/kv.h
+
+/mnt/f/code practice/ClionProject/project1/main.cpp
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+coordinator.h
+/mnt/f/code practice/ClionProject/project1/coordinator.h
+participant.h
+/mnt/f/code practice/ClionProject/project1/participant.h
+conf.h
+/mnt/f/code practice/ClionProject/project1/conf.h
+
+/mnt/f/code practice/ClionProject/project1/myLog.cpp
+myLog.h
+/mnt/f/code practice/ClionProject/project1/myLog.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+util.h
+/mnt/f/code practice/ClionProject/project1/util.h
+
+/mnt/f/code practice/ClionProject/project1/network.cpp
+network.h
+/mnt/f/code practice/ClionProject/project1/network.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+util.h
+/mnt/f/code practice/ClionProject/project1/util.h
+
+/mnt/f/code practice/ClionProject/project1/participant.cpp
+participant.h
+/mnt/f/code practice/ClionProject/project1/participant.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+participant.h
+/mnt/f/code practice/ClionProject/project1/participant.h
+
+/mnt/f/code practice/ClionProject/project1/participant.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/headSet.h
+myLog.h
+/mnt/f/code practice/ClionProject/project1/myLog.h
+network.h
+/mnt/f/code practice/ClionProject/project1/network.h
+encode_decode.h
+/mnt/f/code practice/ClionProject/project1/encode_decode.h
+kv.h
+/mnt/f/code practice/ClionProject/project1/kv.h
+
+/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/ossSocket.cc
+ossSocket.hpp
+/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/ossSocket.hpp
+pd.h
+/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/pd.h
+
+/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/ossSocket.hpp
+../../include/headSet.h
+/mnt/f/code practice/ClionProject/project1/include/headSet.h
+
+/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/pd.h
+headSet.h
+/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/headSet.h
+
