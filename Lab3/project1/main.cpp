@@ -14,7 +14,7 @@ int main(int argc, char ** argv)
         De_encode d;
 
         while(getline(std::cin, msg)) {
-            client = ossSocket(add.c_str(), 9001);
+            client = ossSocket(add.c_str(), 8001);
 
             client.initSocket();
             while( client.connect() ) { }
