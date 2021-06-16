@@ -1,1 +1,43 @@
-《云计算》课程实验3
+## How to use
+
+Compile
+
+``` shell
+cmake CMakeLists.txt
+make
+```
+
+Configure example
+```
+! The argument name and value are separated by whitespace in the configuration file.
+!
+! Mode of process, coordinator OR participant
+mode coordinator
+!
+! The address and port the coordinator process is listening on.
+! Note that the address and port are separated by character ':'. 
+coordinator_info 127.0.0.1:8001
+!
+! Address and port information of all participants. 
+! Three lines specifies three participants' addresses.
+participant_info 127.0.0.1:8002 
+participant_info 127.0.0.1:8003
+participant_info 127.0.0.1:8004
+```
+
+Run the program.
+```shell
+./kvstore2pcsystem --conf <filename>.conf
+```
+
+Run the clients.
+```shell
+./kvstore2pcsystem
+```
+
+You can send the command:
+```
+SET key value
+GET key
+DEL key1 key2 ... keyn
+```
