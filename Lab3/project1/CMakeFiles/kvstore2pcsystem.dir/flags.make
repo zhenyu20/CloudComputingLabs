@@ -6,5 +6,5 @@ CXX_FLAGS = -D_FILE_OFFSET_BITS=64 -ggdb -Wall -O0
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/mnt/f/code practice/ClionProject/project1/./include" -I"/mnt/f/code practice/ClionProject/project1/./third_party/parallel_hashmap" -I"/mnt/f/code practice/ClionProject/project1/./third_party/ossSocket" 
+CXX_INCLUDES = -I/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/./include -I/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/./third_party/parallel_hashmap -I/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/./third_party/ossSocket 
 

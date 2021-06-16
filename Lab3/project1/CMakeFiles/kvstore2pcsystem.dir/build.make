@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/f/code practice/ClionProject/project1"
+CMAKE_SOURCE_DIR = /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/f/code practice/ClionProject/project1"
+CMAKE_BINARY_DIR = /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1
 
 # Include any dependencies generated for this target.
 include CMakeFiles/kvstore2pcsystem.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/kvstore2pcsystem.dir/flags.make
 
 CMakeFiles/kvstore2pcsystem.dir/main.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/main.cpp.o -c "/mnt/f/code practice/ClionProject/project1/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/main.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/main.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/main.cpp" > CMakeFiles/kvstore2pcsystem.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/main.cpp > CMakeFiles/kvstore2pcsystem.dir/main.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/main.cpp" -o CMakeFiles/kvstore2pcsystem.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/main.cpp -o CMakeFiles/kvstore2pcsystem.dir/main.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/kvstore2pcsystem.dir/main.cpp.o.provides.build: CMakeFiles/kvstore2pc
 
 CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o: encode_decode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o -c "/mnt/f/code practice/ClionProject/project1/encode_decode.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/encode_decode.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/encode_decode.cpp" > CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/encode_decode.cpp > CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/encode_decode.cpp" -o CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/encode_decode.cpp -o CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/kvstore2pcsystem.dir/encode_decode.cpp.o.provides.build: CMakeFiles/k
 
 CMakeFiles/kvstore2pcsystem.dir/network.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/network.cpp.o: network.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/network.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/network.cpp.o -c "/mnt/f/code practice/ClionProject/project1/network.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/network.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/network.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/network.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/network.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/network.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/network.cpp" > CMakeFiles/kvstore2pcsystem.dir/network.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/network.cpp > CMakeFiles/kvstore2pcsystem.dir/network.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/network.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/network.cpp" -o CMakeFiles/kvstore2pcsystem.dir/network.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/network.cpp -o CMakeFiles/kvstore2pcsystem.dir/network.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/network.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/kvstore2pcsystem.dir/network.cpp.o.provides.build: CMakeFiles/kvstore
 
 CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o: conf.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o -c "/mnt/f/code practice/ClionProject/project1/conf.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/conf.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/conf.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/conf.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/conf.cpp" > CMakeFiles/kvstore2pcsystem.dir/conf.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/conf.cpp > CMakeFiles/kvstore2pcsystem.dir/conf.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/conf.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/conf.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/conf.cpp" -o CMakeFiles/kvstore2pcsystem.dir/conf.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/conf.cpp -o CMakeFiles/kvstore2pcsystem.dir/conf.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/kvstore2pcsystem.dir/conf.cpp.o.provides.build: CMakeFiles/kvstore2pc
 
 CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o: kv.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o -c "/mnt/f/code practice/ClionProject/project1/kv.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/kv.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/kv.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/kv.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/kv.cpp" > CMakeFiles/kvstore2pcsystem.dir/kv.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/kv.cpp > CMakeFiles/kvstore2pcsystem.dir/kv.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/kv.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/kv.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/kv.cpp" -o CMakeFiles/kvstore2pcsystem.dir/kv.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/kv.cpp -o CMakeFiles/kvstore2pcsystem.dir/kv.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/kvstore2pcsystem.dir/kv.cpp.o.provides.build: CMakeFiles/kvstore2pcsy
 
 CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o: myLog.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o -c "/mnt/f/code practice/ClionProject/project1/myLog.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/myLog.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/myLog.cpp" > CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/myLog.cpp > CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/myLog.cpp" -o CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/myLog.cpp -o CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/kvstore2pcsystem.dir/myLog.cpp.o.provides.build: CMakeFiles/kvstore2p
 
 CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o: third_party/ossSocket/ossSocket.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o -c "/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/ossSocket.cc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/third_party/ossSocket/ossSocket.cc
 
 CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/ossSocket.cc" > CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/third_party/ossSocket/ossSocket.cc > CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.i
 
 CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/third_party/ossSocket/ossSocket.cc" -o CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/third_party/ossSocket/ossSocket.cc -o CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.s
 
 CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o.requires:
 
@@ -227,16 +227,16 @@ CMakeFiles/kvstore2pcsystem.dir/third_party/ossSocket/ossSocket.cc.o.provides.bu
 
 CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o: participant.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o -c "/mnt/f/code practice/ClionProject/project1/participant.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/participant.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/participant.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/participant.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/participant.cpp" > CMakeFiles/kvstore2pcsystem.dir/participant.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/participant.cpp > CMakeFiles/kvstore2pcsystem.dir/participant.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/participant.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/participant.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/participant.cpp" -o CMakeFiles/kvstore2pcsystem.dir/participant.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/participant.cpp -o CMakeFiles/kvstore2pcsystem.dir/participant.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o.requires:
 
@@ -251,16 +251,16 @@ CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o.provides.build: CMakeFiles/kvs
 
 CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o: CMakeFiles/kvstore2pcsystem.dir/flags.make
 CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o: coordinator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o -c "/mnt/f/code practice/ClionProject/project1/coordinator.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o -c /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/coordinator.cpp
 
 CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/f/code practice/ClionProject/project1/coordinator.cpp" > CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/coordinator.cpp > CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.i
 
 CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/f/code practice/ClionProject/project1/coordinator.cpp" -o CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/coordinator.cpp -o CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.s
 
 CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o.requires:
 
@@ -299,7 +299,7 @@ kvstore2pcsystem: CMakeFiles/kvstore2pcsystem.dir/participant.cpp.o
 kvstore2pcsystem: CMakeFiles/kvstore2pcsystem.dir/coordinator.cpp.o
 kvstore2pcsystem: CMakeFiles/kvstore2pcsystem.dir/build.make
 kvstore2pcsystem: CMakeFiles/kvstore2pcsystem.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/f/code practice/ClionProject/project1/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable kvstore2pcsystem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable kvstore2pcsystem"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kvstore2pcsystem.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -324,6 +324,6 @@ CMakeFiles/kvstore2pcsystem.dir/clean:
 .PHONY : CMakeFiles/kvstore2pcsystem.dir/clean
 
 CMakeFiles/kvstore2pcsystem.dir/depend:
-	cd "/mnt/f/code practice/ClionProject/project1" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/f/code practice/ClionProject/project1" "/mnt/f/code practice/ClionProject/project1" "/mnt/f/code practice/ClionProject/project1" "/mnt/f/code practice/ClionProject/project1" "/mnt/f/code practice/ClionProject/project1/CMakeFiles/kvstore2pcsystem.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1 /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1 /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1 /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1 /mnt/f/大三/下/云计算/实验/CloudComputingLabs/Lab3/project1/CMakeFiles/kvstore2pcsystem.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/kvstore2pcsystem.dir/depend
 
